@@ -1,15 +1,15 @@
+import datastructures.CriminalArray;
 import datastructures.FIRlinkedlist;
 import datastructures.Officerqueue;
-import datastructures.CriminalBST;
+import java.util.Scanner;
 import models.Criminal;
 import models.Fir;
 import models.Officer;
-import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static Officerqueue officerQueue = new Officerqueue();
-    private static CriminalBST criminalTree = new CriminalBST();
+    private static CriminalArray criminalArray = new CriminalArray();
     private static FIRlinkedlist firList = new FIRlinkedlist();
 
     public static void main(String[] args) {
@@ -80,7 +80,7 @@ public class Main {
         String crimeType = getStringInput("Enter Crime Type: ");
         
         Criminal criminal = new Criminal(id, name, age, crimeType);
-        criminalTree.insert(criminal);
+        criminalArray.insert(criminal);
         System.out.println("Criminal added successfully!");
     }
 
@@ -91,7 +91,7 @@ public class Main {
         String location = getStringInput("Enter Location: ");
         String criminalId = getStringInput("Enter Criminal ID: ");
         
-        Criminal criminal = criminalTree.search(criminalId);
+        Criminal criminal = criminalArray.search(criminalId);
         if (criminal == null) {
             System.out.println("Criminal not found! Please add the criminal first.");
             return;
@@ -105,7 +105,7 @@ public class Main {
     private static void searchCriminal() {
         System.out.println("\n=== Search Criminal ===");
         String id = getStringInput("Enter Criminal ID to search: ");
-        Criminal criminal = criminalTree.search(id);
+        Criminal criminal = criminalArray.search(id);
         
         if (criminal != null) {
             System.out.println("\nCriminal found:");
