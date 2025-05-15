@@ -27,7 +27,7 @@ public class Officerqueue {
         return officers.size();
     }
 
-    public boolean deleteOfficer(String id) {
+    public boolean deleteOfficer(int id) {
         if (isEmpty()) {
             return false;
         }
@@ -39,7 +39,7 @@ public class Officerqueue {
         // Copy all officers except the one to delete
         while (!isEmpty()) {
             Officer officer = getNextOfficer();
-            if (!officer.getId().equals(id)) {
+            if (officer.getId() != id) {
                 tempQueue.addOfficer(officer);
             } else {
                 found = true;

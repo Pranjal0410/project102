@@ -1,19 +1,19 @@
 package models;
 
 public class Officer {
-    private String id;
+    private int id;
     private String name;
     private String rank;
     private boolean isAvailable;
 
-    public Officer(String id, String name, String rank) {
+    public Officer(int id, String name, String rank) {
         this.id = id;
         this.name = name;
         this.rank = rank;
         this.isAvailable = true;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -36,7 +36,7 @@ public class Officer {
     @Override
     public String toString() {
         return "Officer{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", rank='" + rank + '\'' +
                 ", isAvailable=" + isAvailable +

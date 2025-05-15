@@ -87,7 +87,13 @@ public class Main {
 
     private static void addOfficer() {
         System.out.println("\n=== Add New Officer ===");
-        String id = getStringInput("Enter Officer ID: ");
+        int id;
+        try {
+            id = getIntInput("Enter Officer ID (integer): ");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Officer ID! Please enter a valid integer.");
+            return;
+        }
         String name = getStringInput("Enter Officer Name: ");
         String rank = getStringInput("Enter Officer Rank: ");
         
@@ -225,7 +231,13 @@ public class Main {
 
     private static void deleteOfficer() {
         System.out.println("\n=== Delete Officer ===");
-        String id = getStringInput("Enter Officer ID to delete: ");
+        int id;
+        try {
+            id = getIntInput("Enter Officer ID to delete (integer): ");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Officer ID! Please enter a valid integer.");
+            return;
+        }
         
         if (officerQueue.deleteOfficer(id)) {
             System.out.println("Officer deleted successfully!");
