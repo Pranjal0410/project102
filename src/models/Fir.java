@@ -47,6 +47,14 @@ public class Fir {
         return criminal;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "FIR{" +

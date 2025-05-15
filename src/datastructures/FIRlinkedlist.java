@@ -62,4 +62,56 @@ public class FIRlinkedlist {
     public boolean isEmpty() {
         return head == null;
     }
+
+    public boolean deleteFIR(String firNumber) {
+        if (isEmpty()) {
+            return false;
+        }
+
+        Node current = head;
+        Node previous = null;
+
+        // If head node itself holds the key to be deleted
+        if (current != null && current.fir.getFirNumber().equals(firNumber)) {
+            head = current.next;
+            return true;
+        }
+
+        // Search for the key to be deleted
+        while (current != null && !current.fir.getFirNumber().equals(firNumber)) {
+            previous = current;
+            current = current.next;
+        }
+
+        // If key was not present in linked list
+        if (current == null) {
+            return false;
+        }
+
+        // Unlink the node from linked list
+        previous.next = current.next;
+        return true;
+    }
+
+    public void deleteFIRsByCriminalId(String criminalId) {
+        if (isEmpty()) {
+            return;
+        }
+
+        Node current = head;
+        Node previous = null;
+
+        while (current != null) {
+            if (current.fir.getCriminal().getId().equals(criminalId)) {
+                if (previous == null) {
+                    head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+            } else {
+                previous = current;
+            }
+            current = current.next;
+        }
+    }
 } 

@@ -1,8 +1,8 @@
 package datastructures;
 
-import models.Officer;
 import java.util.LinkedList;
 import java.util.Queue;
+import models.Officer;
 
 public class Officerqueue {
     private Queue<Officer> officers;
@@ -25,5 +25,32 @@ public class Officerqueue {
 
     public int size() {
         return officers.size();
+    }
+
+    public boolean deleteOfficer(String id) {
+        if (isEmpty()) {
+            return false;
+        }
+
+        // Create a temporary queue
+        Officerqueue tempQueue = new Officerqueue();
+        boolean found = false;
+
+        // Copy all officers except the one to delete
+        while (!isEmpty()) {
+            Officer officer = getNextOfficer();
+            if (!officer.getId().equals(id)) {
+                tempQueue.addOfficer(officer);
+            } else {
+                found = true;
+            }
+        }
+
+        // Restore the queue
+        while (!tempQueue.isEmpty()) {
+            addOfficer(tempQueue.getNextOfficer());
+        }
+
+        return found;
     }
 } 

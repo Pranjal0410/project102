@@ -41,4 +41,52 @@ public class CriminalArray {
     public int size() {
         return size;
     }
+
+    public Criminal getCriminal(int index) {
+        if (index >= 0 && index < size) {
+            return criminals[index];
+        }
+        return null;
+    }
+
+    public void sortCriminals(String sortBy) {
+        if (size <= 1) {
+            return;  // No need to sort if array is empty or has one element
+        }
+
+        if (sortBy.equalsIgnoreCase("id")) {
+            CriminalSorter.sortByID(criminals, size);
+        } else if (sortBy.equalsIgnoreCase("name")) {
+            CriminalSorter.sortByName(criminals, size);
+        } else if (sortBy.equalsIgnoreCase("crime")) {
+            CriminalSorter.sortByCrimePriority(criminals, size);
+        }
+    }
+
+    public boolean delete(String id) {
+        for (int i = 0; i < size; i++) {
+            if (criminals[i].getId().equals(id)) {
+                // Shift remaining elements to the left
+                for (int j = i; j < size - 1; j++) {
+                    criminals[j] = criminals[j + 1];
+                }
+                criminals[size - 1] = null;
+                size--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void displayAllCriminals() {
+        if (size == 0) {
+            System.out.println("No criminals in the system.");
+            return;
+        }
+        
+        for (int i = 0; i < size; i++) {
+            System.out.println(criminals[i]);
+            System.out.println("------------------------");
+        }
+    }
 } 
